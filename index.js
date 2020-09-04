@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { ImageBackground, ActivityIndicator, View } from "react-native";
 import Image from "react-native-fast-image";
 
-const lfsr = require("lfsr");
+const LFSR = require("lfsr");
 
 class ImageLoad extends React.Component {
   static propTypes = {
@@ -75,7 +75,7 @@ class ImageLoad extends React.Component {
             placeholderSource
               ? placeholderSource
               : mode === "blur"
-              ? Blurs[parseInt(lfsr.seq(3))]
+              ? Blurs[parseInt(LFSR.seq(3))]
               : require("./Images/empty-image.png")
           }
         ></Image>
