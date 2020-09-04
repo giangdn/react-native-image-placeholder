@@ -74,7 +74,7 @@ class ImageLoad extends React.Component {
               ? placeholderSource
               : mode === "blur"
               ? imgBlur()
-              : require("./Images/empty-image.png")
+              : require("./images/empty-image.png")
           }
         ></Image>
       </View>
@@ -135,26 +135,26 @@ const imgBlur = () => {
 };
 
 const Blurs = [
-  require("./Images/blur/blur-0.jpg"),
-  require("./Images/blur/blur-1.jpg"),
-  require("./Images/blur/blur-2.jpg"),
-  require("./Images/blur/blur-3.jpg"),
-  require("./Images/blur/blur-4.jpg"),
-  require("./Images/blur/blur-5.jpg"),
-  require("./Images/blur/blur-6.jpg"),
-  require("./Images/blur/blur-7.jpg"),
-  require("./Images/blur/blur-8.jpg"),
-  require("./Images/blur/blur-9.jpg"),
-  require("./Images/blur/blur-10.jpg"),
-  require("./Images/blur/blur-11.jpg"),
-  require("./Images/blur/blur-12.jpg"),
-  require("./Images/blur/blur-13.jpg"),
-  require("./Images/blur/blur-14.jpg"),
-  require("./Images/blur/blur-15.jpg"),
-  require("./Images/blur/blur-16.jpg"),
-  require("./Images/blur/blur-17.jpg"),
-  require("./Images/blur/blur-18.jpg"),
-  require("./Images/blur/blur-19.jpg")
+  require("./images/blur-0.jpg"),
+  require("./images/blur-1.jpg"),
+  require("./images/blur-2.jpg"),
+  require("./images/blur-3.jpg"),
+  require("./images/blur-4.jpg"),
+  require("./images/blur-5.jpg"),
+  require("./images/blur-6.jpg"),
+  require("./images/blur-7.jpg"),
+  require("./images/blur-8.jpg"),
+  require("./images/blur-9.jpg"),
+  require("./images/blur-10.jpg"),
+  require("./images/blur-11.jpg"),
+  require("./images/blur-12.jpg"),
+  require("./images/blur-13.jpg"),
+  require("./images/blur-14.jpg"),
+  require("./images/blur-15.jpg"),
+  require("./images/blur-16.jpg"),
+  require("./images/blur-17.jpg"),
+  require("./images/blur-18.jpg"),
+  require("./images/blur-19.jpg")
 ];
 
 const styles = {
