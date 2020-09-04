@@ -108,20 +108,19 @@ class ImageLoad extends React.Component {
         )}
         {(typeof children === "undefined" || children === null) && (
           <View style={styles.viewImageStyles}>
-            {this.state.isLoaded && !this.state.isError && (
-              <Image
-                onLoadEnd={this.onLoadEnd.bind(this)}
-                onError={this.onError.bind(this)}
-                style={[
-                  styles.fastImageStyle,
-                  { borderRadius: borderRadius },
-                  style
-                ]}
-                source={source}
-                resizeMode={resizeMode}
-                borderRadius={borderRadius}
-              />
-            )}
+            <Image
+              onLoadEnd={this.onLoadEnd.bind(this)}
+              onError={this.onError.bind(this)}
+              style={[
+                styles.fastImageStyle,
+                { borderRadius: borderRadius },
+                style
+              ]}
+              source={source}
+              resizeMode={resizeMode}
+              borderRadius={borderRadius}
+            />
+
             {!this.state.isLoaded && this._renderLoader()}
           </View>
         )}
@@ -170,7 +169,8 @@ const styles = {
   viewImageStyles: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    position: "relative"
   },
   imageBlurStyle: {
     width: "100%",
