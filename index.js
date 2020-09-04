@@ -75,7 +75,7 @@ class ImageLoad extends React.Component {
             placeholderSource
               ? placeholderSource
               : mode === "blur"
-              ? require(`./Images/blur/blur-${lfsr.seq(3)}.jpg`)
+              ? Blurs[parseInt(lfsr.seq(3))]
               : require("./Images/empty-image.png")
           }
         ></Image>
@@ -131,6 +131,26 @@ class ImageLoad extends React.Component {
     );
   }
 }
+
+const Blurs = [
+  require("./Images/blur/blur-0.jpg"),
+  require("./Images/blur/blur-1.jpg"),
+  require("./Images/blur/blur-2.jpg"),
+  require("./Images/blur/blur-3.jpg"),
+  require("./Images/blur/blur-4.jpg"),
+  require("./Images/blur/blur-5.jpg"),
+  require("./Images/blur/blur-6.jpg"),
+  require("./Images/blur/blur-7.jpg"),
+  require("./Images/blur/blur-8.jpg"),
+  require("./Images/blur/blur-9.jpg"),
+  require("./Images/blur/blur-10.jpg"),
+  require("./Images/blur/blur-11.jpg"),
+  require("./Images/blur/blur-12.jpg"),
+  require("./Images/blur/blur-13.jpg"),
+  require("./Images/blur/blur-14.jpg"),
+  require("./Images/blur/blur-15.jpg"),
+  require("./Images/blur/blur-16.jpg")
+];
 
 const styles = {
   backgroundImage: {
