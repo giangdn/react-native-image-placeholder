@@ -11,6 +11,7 @@
     "url": "https://github.com/TuNguyenThanh/react-native-image-placeholder.git"
   },
   "dependencies": {
+    "lfsr": "^0.0.3",
     "prop-types": "^15.5.10"
   },
   "keywords": [

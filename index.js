@@ -1,15 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Image, ImageBackground, ActivityIndicator, View } from 'react-native';
+import React from "react";
+import PropTypes from "prop-types";
+import { Image, ImageBackground, ActivityIndicator, View } from "react-native";
+
+const lfsr = require("lfsr");
 
 class ImageLoad extends React.Component {
   static propTypes = {
     isShowActivity: PropTypes.bool,
+    mode: PropTypes.string
   };
 
   static defaultProps = {
     isShowActivity: true,
-	};
+    mode: ""
+  };
 
   constructor(props) {
     super(props);
@@ -19,13 +23,13 @@ class ImageLoad extends React.Component {
     };
   }
 
-  onLoadEnd(){
+  onLoadEnd() {
     this.setState({
       isLoaded: true
     });
   }
 
-  onError(){
+  onError() {
     this.setState({
       isError: true
     });
@@ -33,11 +37,19 @@ class ImageLoad extends React.Component {
 
   render() {
     const {
-      style, source, resizeMode, borderRadius, backgroundColor, children,
-      loadingStyle, placeholderSource, placeholderStyle,
+      style,
+      source,
+      mode,
+      resizeMode,
+      borderRadius,
+      backgroundColor,
+      children,
+      loadingStyle,
+      placeholderSource,
+      placeholderStyle,
       customImagePlaceholderDefaultStyle
     } = this.props;
-    return(
+    return (
       <ImageBackground
         onLoadEnd={this.onLoadEnd.bind(this)}
         onError={this.onError.bind(this)}
@@ -46,34 +58,45 @@ class ImageLoad extends React.Component {
         resizeMode={resizeMode}
         borderRadius={borderRadius}
       >
-        {
-          (this.state.isLoaded && !this.state.isError) ? children :
-          <View 
-            style={[styles.viewImageStyles, { borderRadius: borderRadius }, backgroundColor ? { backgroundColor: backgroundColor } : {}]}
+        {this.state.isLoaded && !this.state.isError ? (
+          children
+        ) : (
+          <View
+            style={[
+              styles.viewImageStyles,
+              { borderRadius: borderRadius },
+              backgroundColor ? { backgroundColor: backgroundColor } : {}
+            ]}
           >
-            {
-              (this.props.isShowActivity && !this.state.isError) &&
+            {this.props.isShowActivity && !this.state.isError && (
               <ActivityIndicator
                 style={styles.activityIndicator}
-                size={loadingStyle ? loadingStyle.size : 'small'}
-                color={loadingStyle ? loadingStyle.color : 'gray'}
+                size={loadingStyle ? loadingStyle.size : "small"}
+                color={loadingStyle ? loadingStyle.color : "gray"}
               />
-            }
+            )}
             <Image
-              style={placeholderStyle ? placeholderStyle : [styles.imagePlaceholderStyles, customImagePlaceholderDefaultStyle]}
-              source={placeholderSource ? placeholderSource : require('./Images/empty-image.png')}
-            >
-            </Image>
+              style={
+                placeholderStyle
+                  ? placeholderStyle
+                  : [
+                      styles.imagePlaceholderStyles,
+                      customImagePlaceholderDefaultStyle
+                    ]
+              }
+              source={
+                placeholderSource
+                  ? placeholderSource
+                  : mode === "blur"
+                  ? require(`./Images/blur/blur-${lfsr.seq(3)}.jpg`)
+                  : require("./Images/empty-image.png")
+              }
+            ></Image>
           </View>
-        }
-        {
-          this.props.children &&
-          <View style={styles.viewChildrenStyles}>
-          {
-            this.props.children
-          }
-          </View>
-        }
+        )}
+        {this.props.children && (
+          <View style={styles.viewChildrenStyles}>{this.props.children}</View>
+        )}
       </ImageBackground>
     );
   }
@@ -81,34 +104,34 @@ class ImageLoad extends React.Component {
 
 const styles = {
   backgroundImage: {
-    position: 'relative',
+    position: "relative"
   },
   activityIndicator: {
-    position: 'absolute',
-    margin: 'auto',
-    zIndex: 9,
+    position: "absolute",
+    margin: "auto",
+    zIndex: 9
   },
   viewImageStyles: {
     flex: 1,
-    backgroundColor: '#e9eef1',
-    justifyContent: 'center',
-    alignItems: 'center'
+    backgroundColor: "#e9eef1",
+    justifyContent: "center",
+    alignItems: "center"
   },
   imagePlaceholderStyles: {
     width: 100,
     height: 100,
-    resizeMode: 'contain',
-    justifyContent: 'center',
-    alignItems: 'center'
+    resizeMode: "contain",
+    justifyContent: "center",
+    alignItems: "center"
   },
   viewChildrenStyles: {
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    position: 'absolute',
-    backgroundColor: 'transparent'
+    position: "absolute",
+    backgroundColor: "transparent"
   }
-}
+};
 
 export default ImageLoad;
