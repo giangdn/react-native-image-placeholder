@@ -3,6 +3,29 @@ import PropTypes from "prop-types";
 import { ImageBackground, ActivityIndicator, View } from "react-native";
 import Image from "react-native-fast-image";
 
+const Blurs = [
+  require("./imgs/blur-0.jpg"),
+  require("./imgs/blur-1.jpg"),
+  require("./imgs/blur-2.jpg"),
+  require("./imgs/blur-3.jpg"),
+  require("./imgs/blur-4.jpg"),
+  require("./imgs/blur-5.jpg"),
+  require("./imgs/blur-6.jpg"),
+  require("./imgs/blur-7.jpg"),
+  require("./imgs/blur-8.jpg"),
+  require("./imgs/blur-9.jpg"),
+  require("./imgs/blur-10.jpg"),
+  require("./imgs/blur-11.jpg"),
+  require("./imgs/blur-12.jpg"),
+  require("./imgs/blur-13.jpg"),
+  require("./imgs/blur-14.jpg"),
+  require("./imgs/blur-15.jpg"),
+  require("./imgs/blur-16.jpg"),
+  require("./imgs/blur-17.jpg"),
+  require("./imgs/blur-18.jpg"),
+  require("./imgs/blur-19.jpg")
+];
+
 class ImageLoad extends React.Component {
   static propTypes = {
     isShowActivity: PropTypes.bool,
@@ -42,14 +65,16 @@ class ImageLoad extends React.Component {
       loadingStyle,
       placeholderSource,
       placeholderStyle,
-      customImagePlaceholderDefaultStyle
+      customImagePlaceholderDefaultStyle,
+      style
     } = this.props;
     return (
       <View
         style={[
           styles.viewImageStyles,
           { borderRadius: borderRadius },
-          backgroundColor ? { backgroundColor: backgroundColor } : {}
+          backgroundColor ? { backgroundColor: backgroundColor } : {},
+          style
         ]}
       >
         {this.props.isShowActivity && !this.state.isError && (
@@ -66,7 +91,8 @@ class ImageLoad extends React.Component {
               : [
                   styles.imagePlaceholderStyles,
                   customImagePlaceholderDefaultStyle,
-                  mode === "blur" ? styles.imageBlurStyle : {}
+                  mode === "blur" ? styles.imageBlurStyle : {},
+                  style
                 ]
           }
           source={
@@ -76,7 +102,7 @@ class ImageLoad extends React.Component {
               ? imgBlur()
               : require("./imgs/empty-image.png")
           }
-        ></Image>
+        />
       </View>
     );
   }
@@ -85,11 +111,14 @@ class ImageLoad extends React.Component {
     const { style, source, resizeMode, borderRadius, children } = this.props;
     return (
       <View
-        style={{
-          borderRadius: borderRadius,
-          position: "relative",
-          flex: 1
-        }}
+        style={[
+          {
+            borderRadius: borderRadius,
+            position: "relative",
+            flex: 1
+          },
+          style
+        ]}
       >
         {typeof children !== "undefined" && children !== null && (
           <ImageBackground
@@ -107,7 +136,7 @@ class ImageLoad extends React.Component {
           </ImageBackground>
         )}
         {(typeof children === "undefined" || children === null) && (
-          <View style={styles.viewImageStyles}>
+          <View style={[styles.viewImageStyles, style]}>
             <Image
               onLoadEnd={this.onLoadEnd.bind(this)}
               onError={this.onError.bind(this)}
@@ -133,29 +162,6 @@ const imgBlur = () => {
   const m = new Date().getMilliseconds() % 100;
   return Blurs[m % 20];
 };
-
-const Blurs = [
-  require("./imgs/blur-0.jpg"),
-  require("./imgs/blur-1.jpg"),
-  require("./imgs/blur-2.jpg"),
-  require("./imgs/blur-3.jpg"),
-  require("./imgs/blur-4.jpg"),
-  require("./imgs/blur-5.jpg"),
-  require("./imgs/blur-6.jpg"),
-  require("./imgs/blur-7.jpg"),
-  require("./imgs/blur-8.jpg"),
-  require("./imgs/blur-9.jpg"),
-  require("./imgs/blur-10.jpg"),
-  require("./imgs/blur-11.jpg"),
-  require("./imgs/blur-12.jpg"),
-  require("./imgs/blur-13.jpg"),
-  require("./imgs/blur-14.jpg"),
-  require("./imgs/blur-15.jpg"),
-  require("./imgs/blur-16.jpg"),
-  require("./imgs/blur-17.jpg"),
-  require("./imgs/blur-18.jpg"),
-  require("./imgs/blur-19.jpg")
-];
 
 const styles = {
   backgroundImage: {
