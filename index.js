@@ -2,8 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { ImageBackground, ActivityIndicator, View } from "react-native";
 import Image from "react-native-fast-image";
-
-const LFSR = require("lfsr");
+import LFSR from "./lfsr";
 
 class ImageLoad extends React.Component {
   static propTypes = {

@@ -7,11 +7,6 @@
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
   integrity sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
 
-lfsr@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/lfsr/-/lfsr-0.0.3.tgz#a6d09885f56d2f30e6474f73d6e6ab2ab877ea86"
-  integrity sha1-ptCYhfVtLzDmR09z1uarKrh36oY=
-
 loose-envify@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
