@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { ImageBackground, ActivityIndicator, View } from "react-native";
 import Image from "react-native-fast-image";
-import LFSR from "./lfsr";
 
 class ImageLoad extends React.Component {
   static propTypes = {
@@ -74,7 +73,7 @@ class ImageLoad extends React.Component {
             placeholderSource
               ? placeholderSource
               : mode === "blur"
-              ? Blurs[parseInt(LFSR.seq(3))]
+              ? imgBlur()
               : require("./Images/empty-image.png")
           }
         ></Image>
@@ -131,6 +130,11 @@ class ImageLoad extends React.Component {
   }
 }
 
+const imgBlur = () => {
+  const m = new Date().getMilliseconds() % 100;
+  return Blurs[m % 20];
+};
+
 const Blurs = [
   require("./Images/blur/blur-0.jpg"),
   require("./Images/blur/blur-1.jpg"),
@@ -148,7 +152,10 @@ const Blurs = [
   require("./Images/blur/blur-13.jpg"),
   require("./Images/blur/blur-14.jpg"),
   require("./Images/blur/blur-15.jpg"),
-  require("./Images/blur/blur-16.jpg")
+  require("./Images/blur/blur-16.jpg"),
+  require("./Images/blur/blur-17.jpg"),
+  require("./Images/blur/blur-18.jpg"),
+  require("./Images/blur/blur-19.jpg")
 ];
 
 const styles = {
