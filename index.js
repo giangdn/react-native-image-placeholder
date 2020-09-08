@@ -23,37 +23,37 @@ const Blurs = [
   require("./imgs/blur-16.jpg"),
   require("./imgs/blur-17.jpg"),
   require("./imgs/blur-18.jpg"),
-  require("./imgs/blur-19.jpg")
+  require("./imgs/blur-19.jpg"),
 ];
 
 class ImageLoad extends React.Component {
   static propTypes = {
     isShowActivity: PropTypes.bool,
-    mode: PropTypes.string
+    mode: PropTypes.string,
   };
 
   static defaultProps = {
     isShowActivity: true,
-    mode: ""
+    mode: "",
   };
 
   constructor(props) {
     super(props);
     this.state = {
       isLoaded: false,
-      isError: false
+      isError: false,
     };
   }
 
   onLoadEnd() {
     this.setState({
-      isLoaded: true
+      isLoaded: true,
     });
   }
 
   onError() {
     this.setState({
-      isError: true
+      isError: true,
     });
   }
 
@@ -66,7 +66,7 @@ class ImageLoad extends React.Component {
       placeholderSource,
       placeholderStyle,
       customImagePlaceholderDefaultStyle,
-      style
+      style,
     } = this.props;
     return (
       <View
@@ -74,7 +74,7 @@ class ImageLoad extends React.Component {
           styles.viewImageStyles,
           { borderRadius: borderRadius },
           backgroundColor ? { backgroundColor: backgroundColor } : {},
-          style
+          style,
         ]}
       >
         {this.props.isShowActivity && !this.state.isError && (
@@ -92,7 +92,7 @@ class ImageLoad extends React.Component {
                   styles.imagePlaceholderStyles,
                   customImagePlaceholderDefaultStyle,
                   mode === "blur" ? styles.imageBlurStyle : {},
-                  style
+                  style,
                 ]
           }
           source={
@@ -109,15 +109,19 @@ class ImageLoad extends React.Component {
 
   render() {
     const { style, source, resizeMode, borderRadius, children } = this.props;
+
+    // check in compose, if local image use ImageBackground instead of FastImage
+    const isLocalImage = source?.uri.substring(0, 4) !== "http";
+    const CustomImage = isLocalImage ? ImageBackground : Image;
     return (
       <View
         style={[
           {
             borderRadius: borderRadius,
             position: "relative",
-            flex: 1
+            flex: 1,
           },
-          style
+          style,
         ]}
       >
         {typeof children !== "undefined" && children !== null && (
@@ -137,13 +141,13 @@ class ImageLoad extends React.Component {
         )}
         {(typeof children === "undefined" || children === null) && (
           <View style={[styles.viewImageStyles, style]}>
-            <Image
+            <CustomImage
               onLoadEnd={this.onLoadEnd.bind(this)}
               onError={this.onError.bind(this)}
               style={[
                 styles.fastImageStyle,
                 { borderRadius: borderRadius },
-                style
+                style,
               ]}
               source={source}
               resizeMode={resizeMode}
@@ -165,18 +169,18 @@ const imgBlur = () => {
 
 const styles = {
   backgroundImage: {
-    position: "relative"
+    position: "relative",
   },
   activityIndicator: {
     position: "absolute",
     margin: "auto",
-    zIndex: 9
+    zIndex: 9,
   },
   viewImageStyles: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    position: "relative"
+    position: "relative",
   },
   imageBlurStyle: {
     width: "100%",
@@ -185,7 +189,7 @@ const styles = {
     top: 0,
     left: 0,
     right: 0,
-    bottom: 0
+    bottom: 0,
   },
   fastImageStyle: {
     width: "100%",
@@ -195,14 +199,14 @@ const styles = {
     left: 0,
     right: 0,
     bottom: 0,
-    resizeMode: "contain"
+    resizeMode: "contain",
   },
   imagePlaceholderStyles: {
     width: 100,
     height: 100,
     resizeMode: "contain",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   viewChildrenStyles: {
     top: 0,
@@ -210,8 +214,8 @@ const styles = {
     right: 0,
     bottom: 0,
     position: "absolute",
-    backgroundColor: "transparent"
-  }
+    backgroundColor: "transparent",
+  },
 };
 
 export default ImageLoad;
